@@ -1,0 +1,50 @@
+create table course (
+course_id int primary key,
+course_name varchar(30)
+);
+
+
+create table score (
+score_id int primary key,
+score varchar(30)
+);
+
+create table batch (
+batch_id int primary key,
+batch_name varchar(30),
+no_of_students int
+);
+
+
+create table tsak (
+task_id int primary key,
+course_id int,
+no_of_task int,
+task_completion int,
+foreign key(course_id) references course(course_id)
+);
+
+create table mentor (
+mentor_id int primary key,
+course_id int,
+batch_id int,
+mentor_name varchar(30),
+rating int,
+foreign key(batch_id) references batch(batch_id),
+
+foreign key(course_id) references course(course_id)
+);
+create table learner (
+learner_id int primary key,
+learner_name varchar(30),
+course_id int,
+batch_id int,
+task_id int,
+
+foreign key(task_id) references tsak(task_id),
+
+
+foreign key(batch_id) references batch(batch_id),
+
+foreign key(course_id) references course(course_id)
+);
